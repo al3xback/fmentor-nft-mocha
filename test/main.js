@@ -1,0 +1,108 @@
+import assert from 'assert';
+import jsdom from 'jsdom';
+import got from 'got';
+
+const { JSDOM } = jsdom;
+
+const url = 'https://al3xback.github.io/fmentor-nft-flex/';
+
+const getData = () => {
+	return got(url)
+		.then((res) => {
+			const { document } = new JSDOM(res.body).window;
+			return document;
+		})
+		.catch((err) => {
+			throw new Error(err);
+		});
+};
+
+describe('DOM', () => {
+	beforeEach(async () => {
+		try {
+			const document = await getData();
+			global.document = document;
+		} catch (err) {
+			console.log(err);
+		}
+	});
+
+	it("should have an article element with class 'card'", () => {
+		const articleEl = document.querySelector('article');
+		const articleClass = document.querySelector('article').className;
+
+		assert.ok(articleEl);
+		assert.equal(articleClass, 'card');
+	});
+
+	it('should have two children in the card element', () => {
+		const cardEl = document.querySelector('.card');
+		const cardChildrenLength = cardEl.children.length;
+
+		assert.equal(cardChildrenLength, 2);
+	});
+
+	it('should have card image with width and height of 302px as initial attribute value', () => {
+		const cardEl = document.querySelector('.card');
+		const cardImageEl = cardEl.querySelector('.card__image img');
+		const cardImageWidth = cardImageEl.getAttribute('width');
+		const cardImageHeight = cardImageEl.getAttribute('height');
+
+		assert.equal(cardImageWidth, 302);
+		assert.equal(cardImageHeight, 302);
+	});
+
+	it('should have title, description, statuses, and author elements', () => {
+		const cardEl = document.querySelector('.card');
+
+		const cardTitleEl = cardEl.querySelector('.card__title');
+		const cardDescEl = cardEl.querySelector('.card__desc');
+		const cardStatusListEl = cardEl.querySelector('.card__stats-list');
+		const cardAuthorEl = cardEl.querySelector('.card__author');
+
+		assert.ok(cardTitleEl);
+		assert.ok(cardDescEl);
+		assert.ok(cardStatusListEl);
+		assert.ok(cardAuthorEl);
+	});
+
+	it("should have a title with word 'Equilibrium'", () => {
+		const cardEl = document.querySelector('.card');
+
+		const cardTitleEl = cardEl.querySelector('.card__title');
+		const cardTitle = cardTitleEl.textContent;
+
+		assert.match(cardTitle, /Equilibrium/);
+	});
+
+	it("should have a description with word 'Our Equilibrium'", () => {
+		const cardEl = document.querySelector('.card');
+
+		const cardDescEl = cardEl.querySelector('.card__desc');
+		const cardDesc = cardDescEl.textContent.trim();
+
+		assert.match(cardDesc, /Our Equilibrium/);
+	});
+
+	it('should have two statuses', () => {
+		const cardEl = document.querySelector('.card');
+
+		const cardStatusListEl = cardEl.querySelector('.card__stats-list');
+		const cardStatusListChildrenLength = cardStatusListEl.children.length;
+
+		assert.equal(cardStatusListChildrenLength, 2);
+	});
+
+	it('should not have an author with a single name', () => {
+		const cardEl = document.querySelector('.card');
+
+		const cardAuthorEl = cardEl.querySelector('.card__author');
+		const cardAuthorName =
+			cardAuthorEl.querySelector('.btn--link').textContent;
+		const cardAuthorWordNameLength = cardAuthorName
+			.trim()
+			.split(' ').length;
+
+		assert.notEqual(cardAuthorWordNameLength, 1);
+	});
+});
