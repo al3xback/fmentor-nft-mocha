@@ -27,22 +27,22 @@ describe('DOM', () => {
 		}
 	});
 
-	it("should have an article element with class 'card'", () => {
+	it("should have an article element with a class of 'card'", () => {
 		const articleEl = document.querySelector('article');
-		const articleClass = document.querySelector('article').className;
+		const articleClass = articleEl.className;
 
 		assert.ok(articleEl);
 		assert.equal(articleClass, 'card');
 	});
 
-	it('should have two children in the card element', () => {
+	it("should have two children inside of the element with a class of 'card'", () => {
 		const cardEl = document.querySelector('.card');
 		const cardChildrenLength = cardEl.children.length;
 
 		assert.equal(cardChildrenLength, 2);
 	});
 
-	it('should have card image with width and height of 302px as initial attribute value', () => {
+	it('should have a card image element that has width and height attribute with each value of 302px', () => {
 		const cardEl = document.querySelector('.card');
 		const cardImageEl = cardEl.querySelector('.card__image img');
 		const cardImageWidth = cardImageEl.getAttribute('width');
@@ -66,7 +66,7 @@ describe('DOM', () => {
 		assert.ok(cardAuthorEl);
 	});
 
-	it("should have a title with word 'Equilibrium'", () => {
+	it("should have a title element that contains 'Equilibrium' word", () => {
 		const cardEl = document.querySelector('.card');
 
 		const cardTitleEl = cardEl.querySelector('.card__title');
@@ -75,7 +75,7 @@ describe('DOM', () => {
 		assert.match(cardTitle, /Equilibrium/);
 	});
 
-	it("should have a description with word 'Our Equilibrium'", () => {
+	it("should have a description element that contains 'Our Equilibrium' word", () => {
 		const cardEl = document.querySelector('.card');
 
 		const cardDescEl = cardEl.querySelector('.card__desc');
@@ -84,7 +84,7 @@ describe('DOM', () => {
 		assert.match(cardDesc, /Our Equilibrium/);
 	});
 
-	it('should have two statuses', () => {
+	it('should have two card statuses elements', () => {
 		const cardEl = document.querySelector('.card');
 
 		const cardStatusListEl = cardEl.querySelector('.card__stats-list');
@@ -93,7 +93,7 @@ describe('DOM', () => {
 		assert.equal(cardStatusListChildrenLength, 2);
 	});
 
-	it('should not have an author with a single name', () => {
+	it('should not have an author element with a single name', () => {
 		const cardEl = document.querySelector('.card');
 
 		const cardAuthorEl = cardEl.querySelector('.card__author');
