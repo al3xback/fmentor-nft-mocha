@@ -45,8 +45,8 @@ describe('DOM', () => {
 	it('should have a card image element that has width and height attribute with each value of 302px', () => {
 		const cardEl = document.querySelector('.card');
 		const cardImageEl = cardEl.querySelector('.card__image img');
-		const cardImageWidth = cardImageEl.getAttribute('width');
-		const cardImageHeight = cardImageEl.getAttribute('height');
+		const cardImageWidth = parseInt(cardImageEl.getAttribute('width'));
+		const cardImageHeight = parseInt(cardImageEl.getAttribute('height'));
 
 		assert.equal(cardImageWidth, 302);
 		assert.equal(cardImageHeight, 302);
@@ -93,7 +93,7 @@ describe('DOM', () => {
 		assert.equal(cardStatusListChildrenLength, 2);
 	});
 
-	it('should not have an author element with a single name', () => {
+	it('should not have an author name element with a single name', () => {
 		const cardEl = document.querySelector('.card');
 
 		const cardAuthorEl = cardEl.querySelector('.card__author');
