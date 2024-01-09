@@ -43,8 +43,7 @@ describe('DOM', () => {
 	});
 
 	it('should have a card image element that has width and height attribute with each value of 302px', () => {
-		const cardEl = document.querySelector('.card');
-		const cardImageEl = cardEl.querySelector('.card__image img');
+		const cardImageEl = document.querySelector('.card__image img');
 		const cardImageWidth = parseInt(cardImageEl.getAttribute('width'));
 		const cardImageHeight = parseInt(cardImageEl.getAttribute('height'));
 
@@ -67,36 +66,28 @@ describe('DOM', () => {
 	});
 
 	it("should have a title element that contains 'Equilibrium' word", () => {
-		const cardEl = document.querySelector('.card');
-
-		const cardTitleEl = cardEl.querySelector('.card__title');
-		const cardTitle = cardTitleEl.textContent;
+		const cardTitleEl = document.querySelector('.card__title');
+		const cardTitle = cardTitleEl.textContent.trim();
 
 		assert.match(cardTitle, /Equilibrium/);
 	});
 
 	it("should have a description element that contains 'Our Equilibrium' word", () => {
-		const cardEl = document.querySelector('.card');
-
-		const cardDescEl = cardEl.querySelector('.card__desc');
+		const cardDescEl = document.querySelector('.card__desc');
 		const cardDesc = cardDescEl.textContent.trim();
 
 		assert.match(cardDesc, /Our Equilibrium/);
 	});
 
 	it('should have two card statuses elements', () => {
-		const cardEl = document.querySelector('.card');
-
-		const cardStatusListEl = cardEl.querySelector('.card__stats-list');
+		const cardStatusListEl = document.querySelector('.card__stats-list');
 		const cardStatusListChildrenLength = cardStatusListEl.children.length;
 
 		assert.equal(cardStatusListChildrenLength, 2);
 	});
 
 	it('should not have an author name element with a single name', () => {
-		const cardEl = document.querySelector('.card');
-
-		const cardAuthorEl = cardEl.querySelector('.card__author');
+		const cardAuthorEl = document.querySelector('.card__author');
 		const cardAuthorName =
 			cardAuthorEl.querySelector('.btn--link').textContent;
 		const cardAuthorWordNameLength = cardAuthorName
