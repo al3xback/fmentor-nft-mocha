@@ -43,12 +43,12 @@ describe('DOM', () => {
 	});
 
 	it('should have a card image element that has width and height attribute with each value of 302px', () => {
-		const cardImageEl = document.querySelector('.card__image img');
-		const cardImageWidth = parseInt(cardImageEl.getAttribute('width'));
-		const cardImageHeight = parseInt(cardImageEl.getAttribute('height'));
+		const cardImgEl = document.querySelector('.card__image img');
+		const cardImgWidth = parseInt(cardImgEl.getAttribute('width'));
+		const cardImgHeight = parseInt(cardImgEl.getAttribute('height'));
 
-		assert.equal(cardImageWidth, 302);
-		assert.equal(cardImageHeight, 302);
+		assert.equal(cardImgWidth, 302);
+		assert.equal(cardImgHeight, 302);
 	});
 
 	it('should have title, description, statuses, and author elements', () => {
@@ -56,12 +56,12 @@ describe('DOM', () => {
 
 		const cardTitleEl = cardEl.querySelector('.card__title');
 		const cardDescEl = cardEl.querySelector('.card__desc');
-		const cardStatusListEl = cardEl.querySelector('.card__stats-list');
+		const cardStatListEl = cardEl.querySelector('.card__stats-list');
 		const cardAuthorEl = cardEl.querySelector('.card__author');
 
 		assert.ok(cardTitleEl);
 		assert.ok(cardDescEl);
-		assert.ok(cardStatusListEl);
+		assert.ok(cardStatListEl);
 		assert.ok(cardAuthorEl);
 	});
 
@@ -79,11 +79,11 @@ describe('DOM', () => {
 		assert.match(cardDesc, /Our Equilibrium/);
 	});
 
-	it('should have two card statuses elements', () => {
-		const cardStatusListEl = document.querySelector('.card__stats-list');
-		const cardStatusListChildrenLength = cardStatusListEl.children.length;
+	it('should have two card status list item elements', () => {
+		const cardStatListEl = document.querySelector('.card__stats-list');
+		const cardStatListChildrenLength = cardStatListEl.children.length;
 
-		assert.equal(cardStatusListChildrenLength, 2);
+		assert.equal(cardStatListChildrenLength, 2);
 	});
 
 	it('should not have an author name element with a single name', () => {
