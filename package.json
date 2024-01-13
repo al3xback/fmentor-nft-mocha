@@ -1,7 +1,7 @@
 {
 	"name": "fmentor-nft-mocha",
 	"version": "1.0.0",
-	"description": "nft preview card component using mocha testing",
+	"description": "nft preview card component using mocha",
 	"main": "index.js",
 	"type": "module",
 	"scripts": {
