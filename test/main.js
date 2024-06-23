@@ -5,6 +5,7 @@ import got from 'got';
 const { JSDOM } = jsdom;
 
 const url = 'https://al3xback.github.io/fmentor-nft-mocha/';
+let document;
 
 const getData = () => {
 	return got(url)
@@ -18,10 +19,9 @@ const getData = () => {
 };
 
 describe('DOM', () => {
-	beforeEach(async () => {
+	before(async () => {
 		try {
-			const document = await getData();
-			global.document = document;
+			document = await getData();
 		} catch (err) {
 			console.log(err);
 		}
